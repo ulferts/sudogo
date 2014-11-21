@@ -1,14 +1,15 @@
 package sudogo
 
 import (
+	"github.com/ulferts/sudogo/structure"
 	"io/ioutil"
 	"strconv"
 	"strings"
 )
 
 type InputSolver struct {
-	board               Board
-	row, column, square chan *Field
+	board     structure.Board
+	solutions chan *structure.Field
 }
 
 func (solver InputSolver) start(path string) {
@@ -26,16 +27,10 @@ func (solver InputSolver) start(path string) {
 			if err == nil {
 				field := &solver.board[x][y]
 
-				field.setValue(value)
+				field.SetValue(value)
 
-				solver.row <- field
-				solver.column <- field
-				//solver.square <- field
+				solver.solutions <- field
 			}
 		}
 	}
-
-	close(solver.column)
-	close(solver.square)
-	close(solver.row)
 }

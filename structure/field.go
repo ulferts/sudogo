@@ -1,12 +1,8 @@
-package sudogo
-
-import (
-	"fmt"
-)
+package structure
 
 type Field struct {
-	dx, dy, value int
-	candidates    []int
+	X, Y, Value int
+	Candidates  []int
 }
 
 func newField(x, y, value int) Field {
@@ -17,14 +13,15 @@ func newField(x, y, value int) Field {
 	}
 }
 
-func (f *Field) setValue(v int) {
-	f.candidates = []int{}
+func (f *Field) SetValue(v int) {
+	f.Candidates = []int{}
 
-	f.value = v
+	f.Value = v
 }
 
-func (f *Field) decreaseCandidates(value int) {
-	currentCandidates := f.candidates
+func (f *Field) DecreaseCandidates(value int) bool {
+	currentCandidates := f.Candidates
+	ret := false
 
 	posOfValue := -1
 
@@ -36,13 +33,9 @@ func (f *Field) decreaseCandidates(value int) {
 
 	if posOfValue >= 0 {
 		newCandidates := append(currentCandidates[:posOfValue], currentCandidates[posOfValue+1:]...)
-		f.candidates = newCandidates
+		f.Candidates = newCandidates
+		ret = true
 	}
-	fmt.Println(f.candidates)
 
-	if len(f.candidates) == 1 && f.value == 0 {
-		fmt.Println("New value found")
-		f.value = f.candidates[0]
-		f.candidates = []int{}
-	}
+	return ret
 }
