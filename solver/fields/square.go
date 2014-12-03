@@ -22,3 +22,15 @@ func (square Square) Fields(field *structure.Field) []*structure.Field {
 
 	return fields
 }
+
+func (square Square) Of(x0, y0 int) []*structure.Field {
+	fields := []*structure.Field{}
+
+	for xc := 0; xc < 3; xc++ {
+		for yc := 0; yc < 3; yc++ {
+			fields = append(fields, &square.Board[x0+xc][y0+yc])
+		}
+	}
+
+	return fields
+}

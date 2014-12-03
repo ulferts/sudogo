@@ -1,4 +1,4 @@
-package sudogo
+package solver
 
 import "github.com/ulferts/sudogo/solver/fields"
 import "github.com/ulferts/sudogo/structure"

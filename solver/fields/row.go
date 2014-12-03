@@ -16,3 +16,14 @@ func (row Row) Fields(field *structure.Field) []*structure.Field {
 
 	return fields
 }
+
+func (row Row) Of(y int) []*structure.Field {
+	fields := []*structure.Field{}
+	length := len(row.Board)
+
+	for x := 0; x < length; x++ {
+		fields = append(fields, &row.Board[x][y])
+	}
+
+	return fields
+}

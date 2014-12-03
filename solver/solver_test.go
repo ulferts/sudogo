@@ -1,4 +1,4 @@
-package sudogo
+package solver
 
 import "testing"
 import "github.com/ulferts/sudogo/structure"

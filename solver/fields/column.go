@@ -15,3 +15,13 @@ func (column Column) Fields(field *structure.Field) []*structure.Field {
 
 	return fields
 }
+
+func (column Column) Of(x int) []*structure.Field {
+	fields := []*structure.Field{}
+
+	for y, _ := range column.Board[x] {
+		fields = append(fields, &column.Board[x][y])
+	}
+
+	return fields
+}
